@@ -31,6 +31,9 @@ RUN cd /root && git clone https://github.com/NVIDIA/nccl.git && cd nccl && \
 ENV LD_LIBRARY_PATH=/root/nccl/lib:$LD_LIBRARY_PATH
 RUN luarocks install nccl
 
+# Issue with gcc library path, found config in the following folder
+ENV LIBRARY_PATH='../src/configure'
+
 # Install luaposix
 RUN luarocks install luaposix
 
@@ -101,7 +104,7 @@ RUN luarocks install https://raw.githubusercontent.com/qassemoquab/stnbhwd/maste
 # Reinforcement learning
 
 # Install xitari
-RUN luarocks install https://raw.githubusercontent.com/Kaixhin/xitari/master/xitari-0-0.rockspec
+RUN luarocks install https://raw.githubusercontent.com/lake4790k/xitari/master/xitari-0-0.rockspec
 
 # Install alewrap
 RUN luarocks install https://raw.githubusercontent.com/Kaixhin/alewrap/master/alewrap-0-0.rockspec
